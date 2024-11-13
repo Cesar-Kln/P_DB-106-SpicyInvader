@@ -15,7 +15,7 @@ CREATE TABLE t_arme(
    nom VARCHAR(50) NOT NULL,
    description VARCHAR(500) NOT NULL,
    prix INT NOT NULL,
-   force INT NOT NULL,
+   `force` INT NOT NULL,
    max_utilisation INT,
    PRIMARY KEY(arme_id),
    UNIQUE(nom)
