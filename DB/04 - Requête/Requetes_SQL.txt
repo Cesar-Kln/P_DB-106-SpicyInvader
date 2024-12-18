@@ -1,0 +1,375 @@
+Requête 1 :
+
+mysql> SELECT pseudonyme, nombre_points FROM t_joueur ORDER BY nombre_points DESC LIMIT 5;
++-------------+---------------+
+| pseudonyme  | nombre_points |
++-------------+---------------+
+| bjeanon9    |      41075803 |
+| juldelvalle |      39101352 |
+| yvavoirol   |      36819747 |
+| sidgeiser   |      32869324 |
+| timvenries  |      31879361 |
++-------------+---------------+
+5 rows in set (0.00 sec)
+
+
+
+Requête 2 :
+
+mysql> SELECT MAX(prix) AS PrixMaximum, MIN(prix) AS PrixMinimum, AVG(prix) AS PrixMoyen FROM t_arme ;
++-------------+-------------+-----------+
+| PrixMaximum | PrixMinimum | PrixMoyen |
++-------------+-------------+-----------+
+|        9000 |          75 | 2082.9000 |
++-------------+-------------+-----------+
+1 row in set (0.00 sec)
+
+Requête 3 :
+
+mysql> SELECT joueur_fk AS IdJoueur, COUNT(commande_id) AS NombreCommandes FROM t_commande GROUP BY IdJoueur ORDER BY NombreCommandes DESC ;
++----------+-----------------+
+| IdJoueur | NombreCommandes |
++----------+-----------------+
+|       46 |               4 |
+|       11 |               4 |
+|       28 |               4 |
+|        3 |               2 |
+|       50 |               2 |
+|       45 |               2 |
+|       34 |               2 |
+|       32 |               2 |
+|       19 |               2 |
+|        9 |               2 |
+|        1 |               2 |
+|       33 |               1 |
+|       15 |               1 |
+|       48 |               1 |
+|       47 |               1 |
+|        5 |               1 |
+|        6 |               1 |
+|       43 |               1 |
+|       42 |               1 |
+|       39 |               1 |
+|       36 |               1 |
+|        8 |               1 |
+|       16 |               1 |
+|       14 |               1 |
+|       30 |               1 |
+|       12 |               1 |
+|       27 |               1 |
+|       25 |               1 |
+|       24 |               1 |
+|       21 |               1 |
+|       13 |               1 |
+|       18 |               1 |
+|       17 |               1 |
++----------+-----------------+
+33 rows in set (0.00 sec)
+
+Requête 4 :
+
+mysql> SELECT joueur_fk AS IdJoueur, COUNT(commande_id) AS NombreCommandes FROM t_commande GROUP BY IdJoueur HAVING NombreCommandes  > 2 ;
++----------+-----------------+
+| IdJoueur | NombreCommandes |
++----------+-----------------+
+|       11 |               4 |
+|       28 |               4 |
+|       46 |               4 |
++----------+-----------------+
+3 rows in set (0.00 sec)
+
+
+
+Requête 5 :
+
+mysql> SELECT t_joueur.pseudonyme, t_arme.nom FROM t_joueur JOIN t_utiliser ON t_joueur.joueur_id = t_utiliser.joueur_fk JOIN t_arme ON t_utiliser.arme_fk = t_arme.arme_id ;
++---------------+---------------------+
+| pseudonyme    | nom                 |
++---------------+---------------------+
+| ablockv       | M2 Flamethrower     |
+| acourvertl    | Browning A-Bolt     |
+| adellcasaz    | Gerber StrongArm    |
+| ameighanx     | L1A1                |
+| avowellsg     | M240                |
+| barthargt     | RGD-5               |
+| bclairu       | F1                  |
+| bclouston17   | CheyTac M200        |
+| bcurless1a    | Minimi              |
+| bjeanon9      | SIG Sauer P226      |
+| cczajkowska19 | FN MAG              |
+| cesklein      | Glock 17            |
+| cosipov1c     | M203                |
+| ctynewellh    | M60                 |
+| dgiggc        | Thompson            |
+| dmuzzir       | M72 LAW             |
+| dpeinke18     | AI Arctic Warfare   |
+| dvirrp        | RPG-7               |
+| emooreyd      | Remington 870       |
+| eshenfisch8   | Desert Eagle        |
+| gcapstack16   | Mathews VXR         |
+| gkaradzase    | Benelli M4          |
+| gmeeganb      | Uzi                 |
+| gwendenm      | Barnett Jackal      |
+| hadaymont     | M4A1                |
+| hbeeswinga    | MP5                 |
+| jcoultonn     | Excalibur Matrix    |
+| jfladgatef    | Mossberg 500        |
+| jgulliver1b   | PP-19 Bizon         |
+| juldelvalle   | M16                 |
+| liawalsky     | Dragunov            |
+| lsainery      | Ka-Bar              |
+| lshirrells    | M67                 |
+| mdallywaterq  | AT4                 |
+| mmidford13    | Push Dagger         |
+| omatic10      | SOG Seal Pup        |
+| rghelardik    | Remington 700       |
+| rlaurenson15  | Bowtech Revolt      |
+| rranyj        | Winchester Model 70 |
+| sbeakes1d     | AWP                 |
+| shaddyi       | PKM                 |
+| sidgeiser     | FAMAS               |
+| sroose7       | Beretta 92          |
+| thonacker12   | Bowie               |
+| timvenries    | Barrett M82         |
+| twinslow11    | Fairbairn-Sykes     |
+| uskinw        | FLA-100             |
+| wdavidmano    | Parker Hale         |
+| wfuggle14     | Hoyt Carbon RX-7    |
+| yvavoirol     | AK-47               |
++---------------+---------------------+
+50 rows in set (0.00 sec)
+
+Requête 6 :
+
+mysql> SELECT t_commande.joueur_fk AS IdJoueur, SUM(t_arme.prix * t_suivre.quantite) AS TotalDepense FROM t_suivre JOIN t_commande ON t_commande.commande_id = t_suivre.commande_fk JOIN t_arme ON t_arme.arme_id = t_suivre.arme_fk  GROUP BY IdJoueur ORDER BY TotalDepense DESC LIMIT 10  ;
++----------+--------------+
+| IdJoueur | TotalDepense |
++----------+--------------+
+|        9 |       408120 |
+|        5 |       387000 |
+|       11 |       194000 |
+|       25 |       175000 |
+|       46 |       173400 |
+|       28 |       165470 |
+|       19 |       137400 |
+|        1 |       136400 |
+|       33 |       126000 |
+|       32 |       113400 |
++----------+--------------+
+10 rows in set (0.00 sec)
+
+Requête 7 :
+
+mysql> SELECT t_joueur.pseudonyme, t_commande.commande_id FROM t_joueur LEFT JOIN t_commande ON t_commande.joueur_fk = t_joueur.joueur_id ;
++---------------+-------------+
+| pseudonyme    | commande_id |
++---------------+-------------+
+| ablockv       |          15 |
+| ablockv       |          49 |
+| acourvertl    |        NULL |
+| adellcasaz    |           9 |
+| ameighanx     |           2 |
+| ameighanx     |           8 |
+| avowellsg     |          18 |
+| barthargt     |          24 |
+| bclairu       |        NULL |
+| bclouston17   |        NULL |
+| bcurless1a    |          42 |
+| bjeanon9      |        NULL |
+| cczajkowska19 |          16 |
+| cczajkowska19 |          17 |
+| cczajkowska19 |          30 |
+| cczajkowska19 |          48 |
+| cesklein      |        NULL |
+| cosipov1c     |        NULL |
+| ctynewellh    |           4 |
+| dgiggc        |           3 |
+| dmuzzir       |          13 |
+| dmuzzir       |          37 |
+| dmuzzir       |          43 |
+| dmuzzir       |          47 |
+| dpeinke18     |          14 |
+| dpeinke18     |          31 |
+| dvirrp        |        NULL |
+| emooreyd      |          35 |
+| eshenfisch8   |          36 |
+| eshenfisch8   |          45 |
+| gcapstack16   |          38 |
+| gkaradzase    |          39 |
+| gmeeganb      |          25 |
+| gwendenm      |        NULL |
+| hadaymont     |        NULL |
+| hbeeswinga    |           1 |
+| hbeeswinga    |          11 |
+| hbeeswinga    |          12 |
+| hbeeswinga    |          26 |
+| jcoultonn     |          23 |
+| jfladgatef    |           6 |
+| jgulliver1b   |           5 |
+| juldelvalle   |          20 |
+| juldelvalle   |          22 |
+| liawalsky     |          19 |
+| lsainery      |        NULL |
+| lshirrells    |        NULL |
+| mdallywaterq  |          28 |
+| mmidford13    |        NULL |
+| omatic10      |        NULL |
+| rghelardik    |          10 |
+| rlaurenson15  |          46 |
+| rranyj        |        NULL |
+| sbeakes1d     |           7 |
+| sbeakes1d     |          50 |
+| shaddyi       |          21 |
+| shaddyi       |          34 |
+| sidgeiser     |          27 |
+| sidgeiser     |          41 |
+| sroose7       |          29 |
+| thonacker12   |          40 |
+| timvenries    |          44 |
+| twinslow11    |        NULL |
+| uskinw        |          32 |
+| wdavidmano    |          33 |
+| wfuggle14     |        NULL |
+| yvavoirol     |        NULL |
++---------------+-------------+
+67 rows in set (0.00 sec)
+
+Requête 8 :
+
+mysql> SELECT t_joueur.pseudonyme, t_commande.commande_id FROM t_joueur JOIN t_commande ON t_commande.joueur_fk = t_joueur.joueur_id ;
++---------------+-------------+
+| pseudonyme    | commande_id |
++---------------+-------------+
+| sidgeiser     |          27 |
+| sidgeiser     |          41 |
+| juldelvalle   |          20 |
+| juldelvalle   |          22 |
+| timvenries    |          44 |
+| liawalsky     |          19 |
+| sroose7       |          29 |
+| eshenfisch8   |          36 |
+| eshenfisch8   |          45 |
+| hbeeswinga    |           1 |
+| hbeeswinga    |          11 |
+| hbeeswinga    |          12 |
+| hbeeswinga    |          26 |
+| gmeeganb      |          25 |
+| dgiggc        |           3 |
+| emooreyd      |          35 |
+| gkaradzase    |          39 |
+| jfladgatef    |           6 |
+| avowellsg     |          18 |
+| ctynewellh    |           4 |
+| shaddyi       |          21 |
+| shaddyi       |          34 |
+| rghelardik    |          10 |
+| jcoultonn     |          23 |
+| wdavidmano    |          33 |
+| mdallywaterq  |          28 |
+| dmuzzir       |          13 |
+| dmuzzir       |          37 |
+| dmuzzir       |          43 |
+| dmuzzir       |          47 |
+| barthargt     |          24 |
+| ablockv       |          15 |
+| ablockv       |          49 |
+| uskinw        |          32 |
+| ameighanx     |           2 |
+| ameighanx     |           8 |
+| adellcasaz    |           9 |
+| thonacker12   |          40 |
+| rlaurenson15  |          46 |
+| gcapstack16   |          38 |
+| dpeinke18     |          14 |
+| dpeinke18     |          31 |
+| cczajkowska19 |          16 |
+| cczajkowska19 |          17 |
+| cczajkowska19 |          30 |
+| cczajkowska19 |          48 |
+| bcurless1a    |          42 |
+| NULL          |           5 |
+| sbeakes1d     |           7 |
+| sbeakes1d     |          50 |
++---------------+-------------+
+50 rows in set (0.00 sec)
+
+J'ai mis un pseudonyme NULL en utilisant ces commandes :
+ALTER TABLE `t_joueur` CHANGE `pseudonyme` `pseudonyme` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+UPDATE `t_joueur` SET `pseudonyme` = NULL WHERE `t_joueur`.`joueur_id` = 48;
+
+
+Requête 9 :
+
+mysql> SELECT t_joueur.pseudonyme, SUM(t_suivre.quantite) AS QteArmeCommande FROM  t_joueur LEFT JOIN t_commande ON t_joueur.joueur_id = t_commande.joueur_fk LEFT JOIN t_suivre ON t_commande.commande_id = t_suivre.commande_fk GROUP BY t_joueur.pseudonyme ;
++---------------+-----------------+
+| pseudonyme    | QteArmeCommande |
++---------------+-----------------+
+| NULL          |              18 |
+| ablockv       |              83 |
+| acourvertl    |            NULL |
+| adellcasaz    |               2 |
+| ameighanx     |              37 |
+| avowellsg     |              21 |
+| barthargt     |              11 |
+| bclairu       |            NULL |
+| bclouston17   |            NULL |
+| bcurless1a    |              17 |
+| bjeanon9      |            NULL |
+| cczajkowska19 |              85 |
+| cesklein      |            NULL |
+| cosipov1c     |            NULL |
+| ctynewellh    |               2 |
+| dgiggc        |              24 |
+| dmuzzir       |             101 |
+| dpeinke18     |              29 |
+| dvirrp        |            NULL |
+| emooreyd      |              10 |
+| eshenfisch8   |              49 |
+| gcapstack16   |              36 |
+| gkaradzase    |              28 |
+| gmeeganb      |              45 |
+| gwendenm      |            NULL |
+| hadaymont     |            NULL |
+| hbeeswinga    |              88 |
+| jcoultonn     |              30 |
+| jfladgatef    |               1 |
+| juldelvalle   |              35 |
+| liawalsky     |               5 |
+| lsainery      |            NULL |
+| lshirrells    |            NULL |
+| mdallywaterq  |              42 |
+| mmidford13    |            NULL |
+| omatic10      |            NULL |
+| rghelardik    |              29 |
+| rlaurenson15  |               3 |
+| rranyj        |            NULL |
+| sbeakes1d     |              45 |
+| shaddyi       |              61 |
+| sidgeiser     |              67 |
+| sroose7       |               3 |
+| thonacker12   |              17 |
+| timvenries    |              43 |
+| twinslow11    |            NULL |
+| uskinw        |              42 |
+| wdavidmano    |              50 |
+| wfuggle14     |            NULL |
+| yvavoirol     |            NULL |
++---------------+-----------------+
+50 rows in set (0.00 sec)
+
+Requêtes 10 :
+
+mysql> SELECT t_commande.joueur_fk AS IdJoueur, Count(DISTINCT t_suivre.arme_fk) AS NombreTypeArmeAchete FROM t_commande JOIN t_suivre ON t_commande.commande_id = t_suivre.commande_fk GROUP BY IdJoueur HAVING  NombreTypeArmeAchete > 3;
++----------+----------------------+
+| IdJoueur | NombreTypeArmeAchete |
++----------+----------------------+
+|       11 |                    4 |
+|       28 |                    4 |
+|       46 |                    4 |
++----------+----------------------+
+3 rows in set (0.00 sec)
+
+
+
+
+

@@ -1,0 +1,6 @@
+Commande Backup : 
+mysqldump -u root -proot db_space_invaders > db_space_invaders_Restore.sql
+
+
+Restore : 
+mysql -u root -proot < db_space_invaders_Restore.sql

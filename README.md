@@ -9,13 +9,13 @@ Temps total :		32 périodes
 
 
 2 LIVRABLE  
-•	Un [rapport](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/Rapport) répondant aux différentes questions posées dans ce document.  
+•	Un [Rapport](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/Rapport) répondant aux différentes questions posées dans ce document.  
   
-•	Un [journal de travail](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/JDT)  
+•	Un [Journal de travail](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/JDT)  
   
-•	Les [fichiers SQL](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/DB/Scripts)  
+•	Les [Fichiers SQL](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/DB/Scripts)  
   
-•	Le [fichier Looping de la modélisation](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/DB/Looping)  
+•	Le [Fichier Looping de la modélisation](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main/DB/Looping)  
   
 •	[Dépôt github](https://github.com/Cesar-Kln/P_DB-106-SpicyInvader/tree/main)  
   

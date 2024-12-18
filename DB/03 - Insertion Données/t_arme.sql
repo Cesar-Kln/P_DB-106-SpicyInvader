@@ -47,5 +47,5 @@ INSERT INTO t_arme (arme_id, type, nom, description, prix, `force`, max_utilisat
 (46, 'Mitrailleuse', 'FN MAG', 'La FN MAG est une mitrailleuse belge de calibre 7,62 mm, utilisée par de nombreuses armées à travers le monde.', 4000, 60, 13000),
 (47, 'Mitrailleuse', 'Minimi', 'Le Minimi est une mitrailleuse légère à munitions de calibre 5,56 mm, utilisée par de nombreuses forces armées, notamment les États-Unis.', 3700, 55, 13900),
 (48, 'Pistolet-mitrailleur', 'PP-19 Bizon', 'Le PP-19 Bizon est un pistolet-mitrailleur russe, connu pour son chargeur tambour de grande capacité.', 1800, 25, 15500),
-(49, 'Lance-grenades', 'M203', 'Le M203 est un lance-grenades à main monté sous un fusil d\'assaut, très utilisé par les forces militaires américaines.', 1500, 40, 14000);
-(50, 'Fusil de précision', 'AWP', 'L AWP est un fusil de précision à verrou, utilisé principalement par les tireurs d élite pour sa grande portée et sa puissance de feu.', 2700, 10, 15000);
+(49, 'Lance-grenades', 'M203', 'Le M203 est un lance-grenades à main monté sous un fusil d\'assaut, très utilisé par les forces militaires américaines.', 1500, 40, 14000),
+(50, 'Fusil de précision', 'AWP', 'L AWP est un fusil de précision à verrou utilisé principalement par les tireurs d élite pour sa grande portée et sa puissance de feu.', 2700, 10, 15000);
