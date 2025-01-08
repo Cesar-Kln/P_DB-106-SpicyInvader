@@ -1,27 +1,27 @@
 -- GESTION DES UTILISATEURS --
 --Je créer les rôles que j'utiliserai pour donner les droits--
-CREATE ROLE 'ADMINISTRATEUR';
-CREATE ROLE 'JOUEUR';
-CREATE ROLE 'GESTION_BOUTIQUE';
+CREATE IF NOT EXISTS ROLE 'ADMINISTRATEUR';
+CREATE IF NOT EXISTS ROLE 'JOUEUR';
+CREATE IF NOT EXISTS ROLE 'GESTION_BOUTIQUE';
 
 -- PERMET DE DONNER TOUT LES DROITS A L'ADMIN --
-GRANT ALL PRIVILEGES ON db_space_invaders.* TO 'ADMINISTRATEUR' ;
+GRANT, GRANT OPTION, SELECT, INSERT, UPDATE, DELETE ON db_space_invaders.* TO 'ADMINISTRATEUR' ; -- AJOUTER GRANT OPTION ET AUSSI SELECT INSERT UPDATE DELETE PLUTÔT QUE ALL PRIVILEGES
 
 
 -- PERMET DE DONNER CERTAIN PRIVILEGES AUX UTILISATEURS --
 
 -- JOUEUR --
 GRANT SELECT  ON db_space_invaders.t_arme TO 'JOUEUR' ;  -- Permet de lire dans la table arme
-GRANT SELECT  ON db_space_invaders.t_commande TO 'JOUEUR' ;  -- Permet de lire dans la table arme
-GRANT INSERT  ON db_space_invaders.t_commande TO 'JOUEUR' ;  -- permet de creer dans la table commande
+GRANT SELECT, INSERT  ON db_space_invaders.t_commande TO 'JOUEUR' ;  -- Permet de lire et créer dans la table arme
+GRANT SELECT  ON db_space_invaders.t_suive TO 'JOUEUR' ;  -- permet de creer dans la table commande
+ -- FAIRE DE PREFENCE EN 1 LIGNE + AJOUTER LA TABLE INTERMEDIAIRE ENTRE LES DEUX TABLES -- 
 
 -- GESTION_BOUTIQUE --
 GRANT SELECT ON db_space_invaders.t_joueur TO 'GESTION_BOUTIQUE' ; -- Permet de lire dans la table arme
-GRANT UPDATE ON db_space_invaders.t_arme TO 'GESTION_BOUTIQUE' ; -- Permet de modifier dans la table arme
-GRANT SELECT ON db_space_invaders.t_arme TO 'GESTION_BOUTIQUE' ; -- Permet de lire dans la table arme
-GRANT DELETE ON db_space_invaders.t_arme TO 'GESTION_BOUTIQUE' ; -- Permet de supprimer dans la table arme
-GRANT INSERT ON db_space_invaders.t_arme TO 'GESTION_BOUTIQUE' ; -- Permet de creer dans la table arme
+GRANT UPDATE, DELETE, SELECT, INSERT ON db_space_invaders.t_arme TO 'GESTION_BOUTIQUE' ; -- Permet de modifier lire supprimer dans la table arme
 GRANT SELECT ON db_space_invaders.t_commande TO 'GESTION_BOUTIQUE' ; -- Permet de lire dans la table commande
+GRANT SELECT ON db_space_invaders.t_suivre TO 'GESTION_BOUTIQUE' ; -- Permet de lire dans la table intermediare
+ -- FAIRE DE PREFENCE EN 1 LIGNE + AJOUTER LA TABLE INTERMEDIAIRE ENTRE LES DEUX TABLES -- 
 
 -- CREATION DES UTILISATEURS --
 CREATE USER 'Joueur'@'%' IDENTIFIED BY 'password_joueur' -- creation de l'utilisateur en donnant son mdp et son id

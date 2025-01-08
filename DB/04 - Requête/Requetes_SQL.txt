@@ -236,7 +236,7 @@ mysql> SELECT t_joueur.pseudonyme, t_commande.commande_id FROM t_joueur LEFT JOI
 
 Requête 8 :
 
-mysql> SELECT t_joueur.pseudonyme, t_commande.commande_id FROM t_joueur JOIN t_commande ON t_commande.joueur_fk = t_joueur.joueur_id ;
+mysql> SELECT t_joueur.pseudonyme, t_commande.commande_id FROM t_joueur LEFT JOIN t_commande ON t_commande.joueur_fk = t_joueur.joueur_id ;
 +---------------+-------------+
 | pseudonyme    | commande_id |
 +---------------+-------------+
